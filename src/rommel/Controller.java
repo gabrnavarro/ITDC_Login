@@ -27,6 +27,8 @@ public class Controller {
 	@FXML 
 	public TextField XStudentNumber;
 	@FXML
+	public TextField FirstName, LastName, MiddleName, Purpose, Organization;
+	@FXML
 	public Button setAt1;
 	@FXML
 	public Button setAt2;
@@ -61,6 +63,14 @@ public class Controller {
 	ObservableList<String> officeToVisitList=FXCollections.observableArrayList("ITDC","DCS","OUR");
 	@FXML
 	private ChoiceBox<String> visitBox;
+	
+	public void loadThird(){
+		Database DBManager = new Database();
+		DBManager.initialize();
+		System.out.println(FirstName.getText() + LastName.getText()+ MiddleName.getText()+ Purpose.getText()+ Organization.getText()+ "sampleoffice");
+		DBManager.insertVisitor(FirstName.getText(), LastName.getText(), MiddleName.getText(), Purpose.getText(), Organization.getText(), "sampleoffice");
+		System.out.println("correct");
+	}
 	
 	public void setClicked(){
 		System.out.print("Hello");

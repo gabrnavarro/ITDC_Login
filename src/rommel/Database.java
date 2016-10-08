@@ -76,4 +76,23 @@ public class Database {
 		}
 		
 	}
+	
+	public void insertVisitor(String FirstName, String LastName, String MiddleName, String Purpose, String Organization, String Office){
+		String str = "INSERT INTO visitors VALUES(?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement st = db.prepareStatement(str);
+			st.setString(1,FirstName);
+			st.setString(2,LastName);
+			st.setString(3,MiddleName);
+			st.setString(4,Purpose);
+			st.setString(5,Organization);
+			st.setString(6,Office);
+
+			st.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }
