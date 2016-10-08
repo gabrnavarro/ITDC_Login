@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,6 +20,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
 public class Controller {
+	@FXML 
+	public TextField XFirstName;
+	@FXML 
+	public TextField XLastName;
+	@FXML 
+	public TextField XStudentNumber;
 	@FXML
 	public Button setAt1;
 	@FXML
@@ -34,7 +41,10 @@ public class Controller {
 		
 		Database DBManager = new Database();
 		DBManager.initialize();
-		
+		//END
+		System.out.println(XFirstName.getText());
+		//INSERT QUERY (no pics)
+		DBManager.insert(XFirstName.getText(), XLastName.getText(), Integer.parseInt(XStudentNumber.getText()));
 		
 		
 		Scene scene = new Scene(root);

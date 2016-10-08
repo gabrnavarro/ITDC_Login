@@ -1,7 +1,7 @@
 package rommel;
 
 import java.io.IOException;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.net.URL;
@@ -20,6 +20,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
 public class Database {
+	public Connection db = null;
+	
 	public void initialize(){
 		System.out.println("-------- PostgreSQL "
 				+ "JDBC Connection Testing ------------");
@@ -38,7 +40,6 @@ public class Database {
 		}
 
 		System.out.println("PostgreSQL JDBC Driver Registered!");
-		Connection db = null;
 
 		try {
 			String url = "jdbc:postgresql:login";
@@ -59,5 +60,20 @@ public class Database {
 		} else {
 			System.out.println("Failed to make connection!");
 		}
+	}
+	
+	public void insert(String FirstName, String LastName, int StudentNumber ){
+		String str = "INSERT INTO students VALUES(?, ?, ?)"; 
+		try {
+			PreparedStatement st = db.prepareStatement(str);
+			st.setString(1, FirstName);
+			st.setString(2,  LastName);
+			st.setInt(3,StudentNumber);
+			st.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
