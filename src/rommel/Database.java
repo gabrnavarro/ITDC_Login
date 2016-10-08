@@ -62,7 +62,7 @@ public class Database {
 		}
 	}
 	
-	public void insert(String FirstName, String LastName, int StudentNumber ){
+	public void insertStudent(String FirstName, String LastName, int StudentNumber ){
 		String str = "INSERT INTO students VALUES(?, ?, ?)"; 
 		try {
 			PreparedStatement st = db.prepareStatement(str);

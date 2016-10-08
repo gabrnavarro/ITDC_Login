@@ -44,7 +44,8 @@ public class Controller {
 		//END
 		System.out.println(XFirstName.getText());
 		//INSERT QUERY (no pics)
-		DBManager.insert(XFirstName.getText(), XLastName.getText(), Integer.parseInt(XStudentNumber.getText()));
+		String result = XStudentNumber.getText().replaceAll("[-+.^:,]","");
+		DBManager.insertStudent(XFirstName.getText(), XLastName.getText(), Integer.parseInt(result));
 		
 		
 		Scene scene = new Scene(root);
