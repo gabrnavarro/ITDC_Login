@@ -51,6 +51,7 @@ import javafx.stage.Stage;public class Main extends Application {
 		} else {
 			System.out.println("Failed to make connection!");
 		}
+		
         launch(args);
     }
 
