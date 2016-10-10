@@ -1,6 +1,7 @@
 
 package rommel;
 
+import com.github.sarxos.webcam.Webcam;
 import java.io.IOException;
 import java.sql.*;
 import java.net.URL;
@@ -20,6 +21,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
 public class Controller {
+	Webcam webcam = Webcam.getDefault();
 	@FXML 
 	public TextField XFirstName;
 	@FXML 
@@ -34,10 +36,9 @@ public class Controller {
 	public Button setAt2;
 	@FXML
 	public void loadSecond(ActionEvent event) throws IOException{
-		Stage stage;
-		Parent root;
-		stage=(Stage) setAt2.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("WebCamPreview.fxml"));
+
+		Stage stage=(Stage) setAt2.getScene().getWindow();
+		Parent root = FXMLLoader.load(getClass().getResource("WebCamPreview.fxml"));
 		
 		//DB initialize
 		
@@ -50,10 +51,9 @@ public class Controller {
 		DBManager.insertStudent(XFirstName.getText(), XLastName.getText(), Integer.parseInt(result));
 		
 		
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		stage.getScene().setRoot(root);
 		stage.setFullScreen(true);
+		stage.show();
 		
 	}
 	@FXML
@@ -64,12 +64,19 @@ public class Controller {
 	@FXML
 	private ChoiceBox<String> visitBox;
 	
-	public void loadThird(){
+	public void loadThird() throws IOException{
 		Database DBManager = new Database();
 		DBManager.initialize();
 		System.out.println(FirstName.getText() + LastName.getText()+ MiddleName.getText()+ Purpose.getText()+ Organization.getText()+ "sampleoffice");
 		DBManager.insertVisitor(FirstName.getText(), LastName.getText(), MiddleName.getText(), Purpose.getText(), Organization.getText(), "sampleoffice");
 		System.out.println("correct");
+		
+		Stage stage=(Stage) setAt2.getScene().getWindow();
+		Parent root = FXMLLoader.load(getClass().getResource("WebCamPreview.fxml"));
+		
+		stage.getScene().setRoot(root);
+		stage.setFullScreen(true);
+		stage.show();
 	}
 	
 	public void setClicked(){
@@ -79,6 +86,7 @@ public class Controller {
 		// TODO Auto-generated method stub
 		visitBox.setValue("ITDC");
 		visitBox.setItems(officeToVisitList);
+		webcam.close();
 		
 	}
 }
