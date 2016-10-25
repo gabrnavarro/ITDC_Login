@@ -1,4 +1,3 @@
-
 package rommel;
 
 import com.github.sarxos.webcam.Webcam;
@@ -72,7 +71,7 @@ public class Controller {
 		System.out.println("correct");
 		
 		Stage stage=(Stage) setAt2.getScene().getWindow();
-		Parent root = FXMLLoader.load(getClass().getResource("WebCamPreview.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("WebCamPreview_visitor.fxml"));
 		
 		stage.getScene().setRoot(root);
 		stage.setFullScreen(true);

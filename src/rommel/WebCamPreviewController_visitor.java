@@ -1,4 +1,7 @@
 package rommel;
+
+import java.io.*;
+import java.sql.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
@@ -21,7 +24,7 @@ import javafx.stage.Stage;
 
 
 
-public class WebCamPreviewController implements Initializable {
+public class WebCamPreviewController_visitor implements Initializable {
 
 	
 	@FXML
@@ -49,11 +52,11 @@ public class WebCamPreviewController implements Initializable {
 		    BufferedImage image = webcam.getImage();
 		    ImageIO.write(image, "JPG", new File(n + ".jpg"));
 		    //IMAGE QUERY
-		    
-		    System.out.print("student");
 		    Database DBManager = new Database();
 			DBManager.initialize();
-			DBManager.insertStudentPicture();
+			DBManager.insertVisitorPicture();
+		    
+		    System.out.print("visitorHAAHAHAH");
 		    campanel.pause();
 		    Thread.sleep(1000);
 		       

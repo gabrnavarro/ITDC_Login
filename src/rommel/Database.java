@@ -1,9 +1,6 @@
 package rommel;
 import java.io.*;
-import java.io.IOException;
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -94,5 +91,41 @@ public class Database {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void insertStudentPicture() throws SQLException, IOException{
+		File file = new File("0.jpg");
+	    FileInputStream fis = null;
+		try {
+			fis = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    PreparedStatement ps = db.prepareStatement("INSERT INTO Students (image) VALUES (?)");
+	    ps.setBinaryStream(1, fis, file.length());
+	    ps.executeUpdate();
+	    ps.close();
+	    fis.close();
+	    
+	    
+		
+		
+	}
+	
+	public void insertVisitorPicture() throws SQLException, IOException{
+		File file = new File("0.jpg");
+	    FileInputStream fis = null;
+		try {
+			fis = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    PreparedStatement ps = db.prepareStatement("INSERT INTO Visitors (image) VALUES (?)");
+	    ps.setBinaryStream(1, fis, file.length());
+	    ps.executeUpdate();
+	    ps.close();
+	    fis.close();
 	}
 }
