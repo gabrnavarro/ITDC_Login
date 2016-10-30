@@ -72,6 +72,7 @@ public class Database {
 			e.printStackTrace();
 		}
 		
+		
 	}
 	
 	public void insertVisitor(String FirstName, String LastName, String MiddleName, String Purpose, String Organization, String Office){
@@ -102,7 +103,7 @@ public class Database {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    PreparedStatement ps = db.prepareStatement("INSERT INTO Students (image) VALUES (?)");
+	    PreparedStatement ps = db.prepareStatement("UPDATE Students set image = ? WHERE image IS NULL");
 	    ps.setBinaryStream(1, fis, file.length());
 	    ps.executeUpdate();
 	    ps.close();
@@ -122,7 +123,7 @@ public class Database {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    PreparedStatement ps = db.prepareStatement("INSERT INTO Visitors (image) VALUES (?)");
+	    PreparedStatement ps = db.prepareStatement("UPDATE Visitors SET image = ? WHERE image IS NULL");
 	    ps.setBinaryStream(1, fis, file.length());
 	    ps.executeUpdate();
 	    ps.close();

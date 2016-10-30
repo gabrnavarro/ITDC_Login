@@ -67,7 +67,7 @@ public class Controller {
 		Database DBManager = new Database();
 		DBManager.initialize();
 		System.out.println(FirstName.getText() + LastName.getText()+ MiddleName.getText()+ Purpose.getText()+ Organization.getText()+ "sampleoffice");
-		DBManager.insertVisitor(FirstName.getText(), LastName.getText(), MiddleName.getText(), Purpose.getText(), Organization.getText(), "sampleoffice");
+		DBManager.insertVisitor(FirstName.getText(), LastName.getText(), MiddleName.getText(), Purpose.getText(), Organization.getText(), visitBox.getValue());
 		System.out.println("correct");
 		
 		Stage stage=(Stage) setAt2.getScene().getWindow();
