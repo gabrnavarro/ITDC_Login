@@ -1,5 +1,7 @@
 package rommel;
 import java.io.*;
+import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 import java.sql.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -60,12 +62,17 @@ public class Database {
 	}
 	
 	public void insertStudent(String FirstName, String LastName, int StudentNumber ){
-		String str = "INSERT INTO students VALUES(?, ?, ?)"; 
+		String str = "INSERT INTO students(firstname, lastname, studentnumber, timestamp) VALUES(?, ?, ?,?)"; 
 		try {
 			PreparedStatement st = db.prepareStatement(str);
 			st.setString(1, FirstName);
 			st.setString(2,  LastName);
 			st.setInt(3,StudentNumber);
+			ZonedDateTime zdt = ZonedDateTime.now();
+			java.util.Date date = java.util.Date.from( zdt.toInstant() );
+			long time  = date.getTime();
+			System.out.println(Long.toString(time));
+			st.setTimestamp(4, new Timestamp(time));
 			st.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,7 +83,7 @@ public class Database {
 	}
 	
 	public void insertVisitor(String FirstName, String LastName, String MiddleName, String Purpose, String Organization, String Office){
-		String str = "INSERT INTO visitors VALUES(?, ?, ?, ?, ?, ?)";
+		String str = "INSERT INTO visitors(firstname,lastname,middlename,purpose,organization,office,timestamp) VALUES(?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement st = db.prepareStatement(str);
 			st.setString(1,FirstName);
@@ -85,6 +92,12 @@ public class Database {
 			st.setString(4,Purpose);
 			st.setString(5,Organization);
 			st.setString(6,Office);
+			
+			ZonedDateTime zdt = ZonedDateTime.now();
+			java.util.Date date = java.util.Date.from( zdt.toInstant() );
+			long time  = date.getTime();
+			System.out.println(Long.toString(time));
+			st.setTimestamp(7, new Timestamp(time));
 
 			st.executeQuery();
 		} catch (SQLException e) {
